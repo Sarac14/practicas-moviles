@@ -1,5 +1,6 @@
 package com.example.practica1.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.practica1.ActivityUserDetail;
 import com.example.practica1.R;
 import com.example.practica1.entities.Student;
 
@@ -45,7 +47,13 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudenVi
         holder.sent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(view.getContext(), "Hola: " + student.getName(), Toast.LENGTH_LONG).show();
+                // Iniciar UserDetailActivity y pasar datos del estudiante como extras
+                Intent intent = new Intent(view.getContext(), ActivityUserDetail.class);
+                intent.putExtra("student_name", student.getName());
+                intent.putExtra("student_last_name", student.getLastName());
+                intent.putExtra("student_id", student.getId());
+                intent.putExtra("student_email", student.getEmail());
+                view.getContext().startActivity(intent);
             }
         });
     }

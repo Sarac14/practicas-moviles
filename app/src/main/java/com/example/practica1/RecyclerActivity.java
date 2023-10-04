@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.practica1.adapters.StudentAdapter;
@@ -28,6 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RecyclerActivity extends AppCompatActivity {
 
     private ActivityRecycleBinding binding;
+    private Button sent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class RecyclerActivity extends AppCompatActivity {
     private List<Student> convertUsersToStudents(List<User> users) {
         List<Student> students = new ArrayList<>();
         for (User user : users) {
-            students.add(new Student(user.getFirstName(), user.getLastName(), user.getId().toString()));
+            students.add(new Student(user.getFirstName(), user.getLastName(), user.getId().toString(),user.getEmail().toString()));
         }
         return students;
     }
